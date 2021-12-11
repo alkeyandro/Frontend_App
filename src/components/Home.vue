@@ -2,13 +2,11 @@
 
   <div class="information">
     <h1>
-      ¡Gracias 
-      <span>{{ userDetailById.nameCompany }}</span
-      >por seleccionar nuestro servicio!
       <br>
-      ¿Qué deseas hacer       
-      <span>{{ userDetailById.firstName }}</span
-      >con el inventario de tu tienda?
+      Hola <span>{{ userDetailById.firstName }}</span
+      > <span>{{ userDetailById.lastName }}</span
+      >, ¿Qué deseas hacer con el inventario de <span>{{ userDetailById.nameCompany }}</span
+      >?
     </h1>
 
     <div class="details">
@@ -34,38 +32,45 @@ import gql from "graphql-tag";
 import jwt_decode from "jwt-decode";
 
 export default {
-  name: "Home",
+    name: "Home",
 
-  data: function () {
-    return {
-      userId: jwt_decode(localStorage.getItem("token_refresh")).user_id,
-      userDetailById: {
-        username: "",
-        name: "",
-        email: "",
-      },
-    };
-  },
-
-  apollo: {
-    userDetailById: {
-      query: gql`
-        query ($userId: Int!) {
-          userDetailById(userId: $userId) {
-            username
-            name
-            email
-          }
-        }
-      `,
-      variables() {
+    data: function(){
         return {
-          userId: this.userId,
-        };
-      }
+            userId: jwt_decode(localStorage.getItem("token_refresh")).user_id,
+            userDetailById: {
+                username: "",
+                nameCompany: "",
+                position: "",
+                email: "",
+                firstName: "",
+                lastName: ""
+            }
+        }
     },
-  }
+
+    apollo: {
+      userDetailById: {
+        query: gql`
+          query ($userId: Int!) {
+            userDetailById(userId: $userId) {
+              username
+              nameCompany
+              position
+              email
+              firstName
+              lastName
+            }
+          }
+        `,
+        variables() {
+          return {
+            userId: this.userId,
+          };
+        },
+      },
+    }
 };
+
 </script>
 
 
