@@ -90,12 +90,12 @@ export default {
 
 .information h1 {
   font-size: 60px;
-  color: #283747;
+  color: #ff9233;
 }
 
 .information h2 {
   font-size: 40px;
-  color: #283747;
+  color: #ff9233;
 }
 
 .information span {
@@ -105,13 +105,13 @@ export default {
 
 .details h3 {
   font-size: 35px;
-  color: #283747;
+  color: #ff9233;
   text-align: center;
 }
 
 .details h2 {
   font-size: 35px;
-  color: #283747;
+  color: #ff9233;
 }
 .details {
   border: 3px solid rgba(0, 0, 0, 0.3);

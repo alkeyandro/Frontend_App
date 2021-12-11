@@ -1,76 +1,3 @@
-<template>
-
-    <div class="logIn_user">
-        <div class="container_logIn_user">
-            <h2>Iniciar sesión</h2>
-
-            <form v-on:submit.prevent="processLogInUser" >
-                <input type="text" v-model="user.username" placeholder="Username">
-                <br>
-                <input type="password" v-model="user.password" placeholder="Password">
-                <br>
-                <button type="submit">Iniciar Sesion</button>
-            </form>
-        </div>
-
-    </div>
-
-</template>
-
-<script>
-import gql from "graphql-tag";
-
-export default {
-    name: "LogIn",
-
-    data: function(){
-        return {
-            user: {
-                username:"",
-                password:""
-            }
-        }
-    },
-
-    methods: {
-        processLogInUser: async function(){
-            
-            await this.$apollo
-                .mutate({
-                    mutation: gql`
-                        mutation($credentials: CredentialsInput!) {
-                        logIn(credentials: $credentials) {
-                            refresh
-                            access
-                        }
-                        }
-                    `,
-                    variables: {
-                        credentials: this.user,
-                    },
-                })
-
-                .then((result) => {
-                    let dataLogIn = {
-                        username: this.user.username,
-                        token_access: result.data.logIn.access,
-                        token_refresh: result.data.logIn.refresh,
-                    }
-                    
-                    this.$emit('completedLogIn', dataLogIn)
-                })
-                .catch((error) => {
-                    
-                    if (error.response.status == "401")
-                        alert("ERROR 401: Credenciales Incorrectas.");
-                    
-                });
-        }
-    }
-}
-</script>
-
-
 <style>
 
     .logIn_user{
@@ -85,7 +12,7 @@ export default {
     }
 
     .container_logIn_user {
-        border: 3px solid  #283747;
+        border: 3px solid  #ff9233;
         border-radius: 10px;
         width: 25%;
         height: 60%;
@@ -97,7 +24,7 @@ export default {
     }
 
     .logIn_user h2{
-        color: #283747;
+        color: #ff9233;
 
     }
 
@@ -114,16 +41,16 @@ export default {
         padding: 10px 20px;
         margin: 5px 0;
 
-        border: 1px solid #283747;
+        border: 1px solid #ff9233;
     }
 
     .logIn_user button{
         width: 100%;
         height: 40px;
 
-        color: #E5E7E9;
-        background: #283747;
-        border: 1px solid #E5E7E9;
+        color: #fffbce;
+        background: #ff9233;
+        border: 1px solid #fffbce;
 
         border-radius: 5px;
         padding: 10px 25px;
@@ -131,10 +58,9 @@ export default {
     }
 
     .logIn_user button:hover{
-        color: #E5E7E9;
+        color: #fffbce;
         background: crimson;
-        border: 1px solid #283747;
-        cursor: pointer;
+        border: 1px solid #ff9233;
     }
 
 </style>
