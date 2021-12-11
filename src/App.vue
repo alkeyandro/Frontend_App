@@ -40,7 +40,6 @@
 <script>
 export default {
   name: 'App',
-
   computed: {
     is_auth: {
       get: function() {
@@ -49,17 +48,13 @@ export default {
       set: function() { }
     }
   },
-
   methods:{
-
     loadLogIn: function(){
       this.$router.push({name: "logIn"})
     },
-
     loadSignUp: function(){
       this.$router.push({name: "signUp"})
     },
-
     completedLogIn: function(data) {
 			localStorage.setItem("username", data.username);
 			localStorage.setItem("token_access", data.token_access);
@@ -67,20 +62,16 @@ export default {
 			alert("Autenticación Exitosa");
 			this.loadHome();
     },
-
     completedSignUp: function(data) {
 			alert("Registro Exitoso");
 			this.completedLogIn(data);
     },
-
     loadHome: function() {
       this.$router.push({ name: "home" });
     },
-
     loadStock: function() {
       this.$router.push({ name: "stock" });
     },
-
     logOut: function () {
 			localStorage.clear();
 			alert("Sesión Cerrada");
@@ -104,8 +95,8 @@ export default {
     height: 10vh; 
     min-height: 100px;
 
-    background-color: #283747 ;
-    color:#E5E7E9  ;
+    background-color: #ff9233 ;
+    color:#fffbce  ;
 
     display: flex;
     justify-content: space-between;
@@ -129,23 +120,23 @@ export default {
   }
 
   .header nav button{
-    color: #E5E7E9;
-    background: #283747;
-    border: 1px solid #E5E7E9;
+    color: #fffbce;
+    background: #ff9233;
+    border: 1px solid #fffbce;
 
     border-radius: 5px;
     padding: 10px 20px;
   }
 
   .header nav button:hover{
-    color: #283747;
-    background: #E5E7E9;
-    border: 1px solid #E5E7E9;
+    color: #fffbce;
+    background: #ff3d5c;
+    border: 1px solid #ff3d5c;
   }
 
   
   .main-component{
-    height: 75vh;
+    height: 71vh;
     margin: 0%;
     padding: 0%;
 
@@ -160,8 +151,8 @@ export default {
     height: 10vh;
     min-height: 100px; 
 
-    background-color: #283747;
-    color: #E5E7E9;
+    background-color: #ff9233;
+    color: #fffbce;
 
   }
 
