@@ -7,25 +7,22 @@
             <form v-on:submit.prevent="processUpdateProduct" >
                 
                 <label for="name">Nombre del Producto:</label><br>
-                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required> 
-                <br>
-                <label for="username">Nombre de Usuario:</label><br>
-                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required> 
+                <input type="text" v-model="updateProduct.name" placeholder="Nombre del Producto" required> 
                 <br>
                 <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model="item.quantity" min="1" id="1" placeholder="" required> 
+                <input type="number" v-model="updateProduct.quantity" min="1" id="1" placeholder="" required> 
                 <br>
                 <label for="type">Tipo o Categoría:</label><br>
-                <input type="text" v-model="item.type" placeholder="Tipo" required>
+                <input type="text" v-model="updateProduct.type" placeholder="Tipo" required>
                 <br>
                 <label for="description">Descripción:</label><br>
-                <input type="text" v-model="item.description" placeholder="Descripcion" required>
+                <input type="text" v-model="updateProduct.description" placeholder="Descripcion" required>
                 <br>
                 <label for="brand">Marca:</label><br>
-                <input type="text" v-model="item.brand" placeholder="Marca" required> 
+                <input type="text" v-model="updateProduct.brand" placeholder="Marca" required> 
                 <br>
                 <label for="price">Precio:</label><br>
-                <input type="number" step="any" v-model="item.price" placeholder="" required> 
+                <input type="number" step="any" v-model="updateProduct.price" placeholder="" required> 
                 <br>
 
                 <button type="submit">Actualizar</button><button type="reset">Cancelar</button>
@@ -38,7 +35,7 @@
 </template>
 
 <script>
-import jwt_decode from "jwt-decode";
+import gql from "graphql-tag";
  
 export default {
     
@@ -46,18 +43,43 @@ export default {
  
     data: function(){ 
         return {
-            item: {
-                name: "",
-                username: "",
-                quantity: 0,
-                type: "",
-                description: "",
+            username: localStorage.getItem("username"),
+            updateProduct: {
                 brand: "",
-                price: 0
-            }
+                description: "",
+                name: "",
+                price: 0,
+                quantity: 0,
+                type: ""
+            },
         }
     },
-} 
+
+    methods: {
+        processUpdateProduct: async function() {
+
+            await this.$apollo
+            .mutate({
+                mutation: gql`
+                    mutation($item: ItemUpdate!, $username: String!) {
+                        updateProduct(item: $item, username: $username) {
+                        }
+                    }
+                `,
+                variables: {
+                    item: this.updateProduct,
+                    username: this.username,
+                },
+            })
+            .then((result) => {
+                alert("Ok!");
+            })
+            .catch((error) => {
+                alert("Error! Intenta nuevamente.");
+            });
+        },
+    },
+};
 </script>
 
 <style>
