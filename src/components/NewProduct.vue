@@ -7,25 +7,25 @@
             <form v-on:submit.prevent="processNewProduct" >
                 
                 <label for="name">Nombre del Producto:</label><br>
-                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required> 
+                <input type="text" v-model="createProduct.name" placeholder="Nombre del Producto" required> 
                 <br>
                 <label for="username">Nombre de Usuario:</label><br>
-                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required> 
+                <input type="text" v-model="createProduct.username" placeholder="Nombre de Usuario" readonly> 
                 <br>
                 <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model="item.quantity" min="1" id="1" placeholder="" required> 
+                <input type="number" v-model="createProduct.quantity" min="1" id="1" placeholder="" required> 
                 <br>
                 <label for="type">Tipo o Categoría:</label><br>
-                <input type="text" v-model="item.type" placeholder="Tipo" required>
+                <input type="text" v-model="createProduct.type" placeholder="Tipo" required>
                 <br>
                 <label for="description">Descripción:</label><br>
-                <input type="text" v-model="item.description" placeholder="Descripcion" required>
+                <input type="text" v-model="createProduct.description" placeholder="Descripcion" required>
                 <br>
                 <label for="brand">Marca:</label><br>
-                <input type="text" v-model="item.brand" placeholder="Marca" required> 
+                <input type="text" v-model="createProduct.brand" placeholder="Marca" required> 
                 <br>
                 <label for="price">Precio:</label><br>
-                <input type="number" step="any" v-model="item.price" placeholder="" required> 
+                <input type="number" step="any" v-model="createProduct.price" placeholder="" required> 
                 <br>
 
                 <button type="submit">Agregar</button><button type="reset">Cancelar</button>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import jwt_decode from "jwt-decode";
+import gql from "graphql-tag";
  
 export default {
     
@@ -44,18 +44,50 @@ export default {
  
     data: function(){ 
         return {
-            item: {
+            createProduct: {
+                brand: "",
+                description: "",
                 name: "",
-                username: "",
+                price: 0,
                 quantity: 0,
                 type: "",
-                description: "",
-                brand: "",
-                price: 0
+                username: localStorage.getItem("username")
             }
         }
     },
-} 
+
+    methods: {
+        processNewProduct: async function() {
+
+            await this.$apollo
+            .mutate({
+                mutation: gql`
+                    mutation($stock: StockInput!) {
+                        createProduct(stock: $stock) {
+                            id
+                            brand
+                            description
+                            name
+                            price
+                            quantity
+                            type
+                            username
+                        }
+                    }
+                `,
+                variables: {
+                    stock: this.createProduct,
+                },
+            })
+            .then((result) => {
+                alert("Ok!");
+            })
+            .catch((error) => {
+                alert("Este producto no pudo ser agregado, intenta nuevamente!");
+            });
+        },
+    },
+};
 </script>
 
 <style>
