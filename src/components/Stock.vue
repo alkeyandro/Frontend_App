@@ -2,10 +2,12 @@
   <div id="Stock">
     <div class="container">
       <h2>
-        Hola <span>{{ username }}</span>!
+        ¡Hola <span>{{ username }}</span>!
       </h2>
     </div>
-    <h2>Productos disponibles en esta tienda </h2><button v-on:click="loadNewProduct"> Nuevo Producto </button>  
+    <h2>Productos disponibles en esta tienda </h2>
+    <div class="boton-NewProduct"><button v-on:click="loadNewProduct"> Agrega más productos </button></div><br> 
+    
     <div class="container-table">
         <table>
             <thead>
@@ -130,7 +132,7 @@ export default {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: crimson;
+        background-color: #022116;
         color: white;
     }
     #Stock > h2 {
@@ -138,17 +140,17 @@ export default {
         font-size: 25px;
     }
     #Stock .container {
-        padding: 30px;
+        padding: 10px 80px;
         border: 3px solid rgba(0, 0, 0, 0.3);
-        border-radius: 20px;
-        margin: 5% 0 1% 0;
+        border-radius: 10px;
+        margin: 5% 0 0 0;
     }
     #Stock  .container h2 {
         font-size: 25px;
-        color: #283747;
+        color: #045436;
     }
     #Stock .container span {
-        color: crimson;
+        color: #147287;
         font-weight: bold;
     }
 
@@ -156,9 +158,9 @@ export default {
         width: 100%;
         height: 40px;
 
-        color: #fffbce;
-        background: #ff9233;
-        border: 1px solid #fffbce;
+        color: #ffffff;
+        background: #045436;
+        border: 1px solid #ffffff;
 
         border-radius: 5px;
         padding: 10px 25px;
@@ -166,8 +168,9 @@ export default {
     }
 
     button:hover{
-        color: #fffbce;
-        background: crimson;
-        border: 1px solid #ff9233;
+        color: #045436;
+        background: #08A166;
+        border: 1px solid #045436;
+        cursor: pointer;
     }
 </style>

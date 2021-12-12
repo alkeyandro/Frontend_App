@@ -95,8 +95,9 @@ export default {
     height: 10vh; 
     min-height: 100px;
 
-    background-color: #ff9233 ;
-    color:#fffbce  ;
+    background-color: #045436 ;
+    color:#ffffff  ;
+
 
     display: flex;
     justify-content: space-between;
@@ -104,7 +105,8 @@ export default {
   }
 
   .header h1{
-    width: 20%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 23%;
     text-align: center;
   }
 
@@ -120,27 +122,28 @@ export default {
   }
 
   .header nav button{
-    color: #fffbce;
-    background: #ff9233;
-    border: 1px solid #fffbce;
+    color: #ffffff;
+    background: #045436;
+    border: 1px solid #08A166;
 
     border-radius: 5px;
     padding: 10px 20px;
   }
 
   .header nav button:hover{
-    color: #fffbce;
-    background: #ff3d5c;
-    border: 1px solid #ff3d5c;
+    color: #ffffff;
+    background: #08A166;
+    border: 1px solid #1D543F;
+    cursor: pointer;
   }
 
   
   .main-component{
-    height: 71vh;
+    height: 70vh;
     margin: 0%;
     padding: 0%;
 
-    background: #FDFEFE ;
+    background: #ffffff ;
   }
 
  
@@ -148,11 +151,11 @@ export default {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 10vh;
+    height: 15vh;
     min-height: 100px; 
 
-    background-color: #ff9233;
-    color: #fffbce;
+    background-color: #045436;
+    color: #ffffff;
 
   }
 
@@ -163,6 +166,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
 
 </style>

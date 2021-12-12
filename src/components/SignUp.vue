@@ -105,9 +105,9 @@ export default {
     }
 
     .container_signUp_user {
-        border: 3px solid  #ff9233;
+        border: 3px solid  #045436;
         border-radius: 10px;
-        width: 25%;
+        width: 32%;
         height: 85%;
         
         display: flex;
@@ -117,7 +117,7 @@ export default {
     }
 
     .signUp_user h2{
-        color: #ff9233;
+        color: #045436;
 
     }
 
@@ -134,16 +134,16 @@ export default {
         padding: 10px 20px;
         margin: 5px 0;
 
-        border: 1px solid #ff9233;
+        border: 1px solid #045436;
     }
 
     .signUp_user button{
         width: 100%;
         height: 40px;
 
-        color: #fffbce;
-        background: #ff9233;
-        border: 1px solid #ff9233;
+        color: #ffffff;
+        background: #045436;
+        border: 1px solid #045436;
 
         border-radius: 5px;
         padding: 10px 25px;
@@ -151,9 +151,10 @@ export default {
     }
 
     .signUp_user button:hover{
-        color: #fffbce;
-        background: crimson;
-        border: 1px solid #fffbce;
+        color: #ffffff;
+        background: #08A166;
+        border: 1px solid #045436;
+        cursor: pointer;
     }
 
 </style>

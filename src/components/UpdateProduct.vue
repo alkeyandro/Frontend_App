@@ -31,7 +31,9 @@
                 <button type="submit">Actualizar</button><button type="reset">Cancelar</button>
 
             </form> 
+            <br><br><br>
         </div>
+        
     </div> 
 </template>
 
@@ -60,7 +62,7 @@ export default {
 
 <style>
     .updateProduct_user{
-        margin: 0;
+        margin: 5%;
         padding: 0%;
         height: 100%;
         width: 100%;
@@ -70,10 +72,10 @@ export default {
         align-items: center;
     }
     .container_updateProduct_user {
-        border: 3px solid  #ff9233;
+        border: 3px solid  #045436;
         border-radius: 10px;
-        width: 30%;
-        height: 70%;
+        width: 40%;
+        height: 103%;
         
         display: flex;
         flex-direction: column;
@@ -81,7 +83,7 @@ export default {
         align-items: center;
     }
     .updateProduct_user h2{
-        color: #ff9233;
+        color: #045436;
     }
     .updateProduct_user form{
         width: 70%;
@@ -92,20 +94,20 @@ export default {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid  #ff9233;
+        border: 1px solid  #045436;
     }
     .updateProduct_user input[type=number]{
         box-sizing: border-box;
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid  #ff9233;
+        border: 1px solid  #045436;
     }
     .updateProduct_user button{
         width: 50%;
         height: 40px;
         color: #E5E7E9;
-        background: #ff9233;
+        background: #045436;
         border: 2px solid #E5E7E9;
         border-radius: 5px;
         padding: 10px 25px;
@@ -114,8 +116,8 @@ export default {
     }
     .updateProduct_user button:hover{
         color: #E5E7E9;
-        background: crimson;
-        border: 1px solid #283747;
+        background: #08A166;
+        border: 1px solid #045436;
         cursor: pointer;
     }
 </style>

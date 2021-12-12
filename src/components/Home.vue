@@ -5,21 +5,23 @@
       <br>
       Hola <span>{{ userDetailById.firstName }}</span
       > <span>{{ userDetailById.lastName }}</span
-      >, ¿Qué deseas hacer con el inventario de <span>{{ userDetailById.nameCompany }}</span
+      >, ¿Qué deseas hacer con el <br> inventario de <span>{{ userDetailById.nameCompany }}</span
       >?
     </h1>
 
+    <hr>
+      <button v-on:click="loadNewProduct"> Agregar Productos </button>
+      <button v-on:click="loadUpdateProduct"> Actualizar Productos </button>
+      <button v-on:click="loadRemoveProduct"> Eliminar Productos </button>
+    <hr>
+
     <div class="details">
-      <h3>Su información es la siguiente</h3>
-
+      <h3>Perfil del Usuario</h3>
       <h2>
-        Nombre de usuario:
-        <span>{{ userDetailById.username }}</span>
-      </h2>
-
-      <h2>
-        Correo electrónico:
-        <span>{{ userDetailById.email }}</span>
+        Nombre: <span>{{ userDetailById.firstName }}</span><br>
+        Apellido: <span>{{ userDetailById.lastName }}</span><br>
+        Cargo: <span>{{ userDetailById.position }}</span><br>
+        Correo electrónico: <span>{{ userDetailById.email }}</span>
       </h2>
     </div>
   </div>
@@ -45,6 +47,18 @@ export default {
                 firstName: "",
                 lastName: ""
             }
+        }
+    },
+
+    methods:{
+        loadNewProduct: function() {
+            this.$router.push({ name: "newProduct" });
+        },
+        loadRemoveProduct: function() {
+            this.$router.push({ name: "removeProduct" });
+        },
+        loadUpdateProduct: function() {
+            this.$router.push({ name: "updateProduct" });
         }
     },
 
@@ -89,35 +103,62 @@ export default {
 }
 
 .information h1 {
-  font-size: 60px;
-  color: #ff9233;
+  font-size: 40px;
+  text-align: center;
+  color: #045436;
 }
 
 .information h2 {
-  font-size: 40px;
-  color: #ff9233;
+  font-size: 30px;
+  color: #045436;
 }
 
 .information span {
-  color: crimson;
+  color: #147287;
   font-weight: bold;
 }
 
+hr {
+  height: 3px;
+  width: 50%;
+  background-color: #266E54;
+}
+
 .details h3 {
-  font-size: 35px;
-  color: #ff9233;
+  font-size: 30px;
+  color: #045436;
   text-align: center;
 }
 
 .details h2 {
-  font-size: 35px;
-  color: #ff9233;
+  font-size: 24px;
+  color: #045436;
 }
 .details {
   border: 3px solid rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  padding: 30px 80px;
-  margin: 30px 0 0 0;
+  border-radius: 10px;
+  padding: 0px 80px;
+  margin: 10px 0 0 0;
+}
+
+.information button{
+  width: 25%;
+  height: 40px;
+
+  color: #ffffff;
+  background: #045436;
+  border: 1px solid #ffffff;
+
+  border-radius: 5px;
+  padding: 10px 25px;
+  margin: 0px 0;
+}
+
+.information button:hover{
+  color: #ffffff;
+  background: #08A166;
+  border: 1px solid #045436;
+  cursor: pointer;
 }
 
 </style>

@@ -85,7 +85,7 @@ export default {
     }
 
     .container_logIn_user {
-        border: 3px solid  #ff9233;
+        border: 3px solid  #045436;
         border-radius: 10px;
         width: 25%;
         height: 60%;
@@ -97,7 +97,7 @@ export default {
     }
 
     .logIn_user h2{
-        color: #ff9233;
+        color: #045436;
 
     }
 
@@ -114,16 +114,16 @@ export default {
         padding: 10px 20px;
         margin: 5px 0;
 
-        border: 1px solid #ff9233;
+        border: 1px solid #045436;
     }
 
     .logIn_user button{
         width: 100%;
         height: 40px;
 
-        color: #fffbce;
-        background: #ff9233;
-        border: 1px solid #fffbce;
+        color: #ffffff;
+        background: #045436;
+        border: 1px solid #ffffff;
 
         border-radius: 5px;
         padding: 10px 25px;
@@ -131,9 +131,10 @@ export default {
     }
 
     .logIn_user button:hover{
-        color: #fffbce;
-        background: crimson;
-        border: 1px solid #ff9233;
+        color: #ffffff;
+        background: #08A166;
+        border: 1px solid #045436;
+        cursor: pointer;
     }
 
 </style>

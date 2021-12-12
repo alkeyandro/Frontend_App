@@ -58,10 +58,10 @@ export default {
         align-items: center;
     }
     .container_removeProduct_user {
-        border: 3px solid  #ff9233;
+        border: 3px solid  #045436;
         border-radius: 10px;
-        width: 30%;
-        height: 70%;
+        width: 40%;
+        height: 80%;
         
         display: flex;
         flex-direction: column;
@@ -69,7 +69,7 @@ export default {
         align-items: center;
     }
     .removeProduct_user h2{
-        color: #ff9233;
+        color: #045436;
     }
     .removeProduct_user form{
         width: 70%;
@@ -80,20 +80,20 @@ export default {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid  #ff9233;
+        border: 1px solid  #045436;
     }
     .removeProduct_user input[type=number]{
         box-sizing: border-box;
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid  #ff9233;
+        border: 1px solid  #045436;
     }
     .removeProduct_user button{
         width: 50%;
         height: 40px;
         color: #E5E7E9;
-        background: #ff9233;
+        background: #045436;
         border: 2px solid #E5E7E9;
         border-radius: 5px;
         padding: 10px 25px;
@@ -102,7 +102,7 @@ export default {
     }
     .removeProduct_user button:hover{
         color: #E5E7E9;
-        background: crimson;
+        background: #08A166;
         border: 1px solid #283747;
         cursor: pointer;
     }
