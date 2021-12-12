@@ -1,142 +1,121 @@
-<template>
-  <div id="NewProduct">
-    <div class="container">
-      <h2>
-        Hola <span>{{ username }}</span>!
-      </h2>
-    </div>
-    <h2>Productos disponibles en esta tienda:</h2>    
-    <div class="container-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Responsable</th>
-                    <th>Cantidad</th>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
-                    <th>Marca</th>
-                    <th>Precio</th>
-                    <th>Eliminar</th>
-                    <th>Editar</th>
-                </tr>
-            </thead>
-            <tbody v-for="item in stockByUsername" :key="item.id">
-                <tr class="clickable-row">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.type }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.brand }}</td>
-                    <td>$ {{ item.price }}</td>
-                    <td><button v-on:click="deleteItem(item)">Eliminar</button></td>
-                    <td><button v-on:click="updateItem(item)">Editar</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-  </div>
+<template> 
+ 
+    <div class="newProduct_user">
+        <div class="container_newProduct_user">
+            <h2>Ingreso de Mercancía</h2> 
+ 
+            <form v-on:submit.prevent="processNewProduct" >
+                
+                <label for="name">Nombre del Producto:</label><br>
+                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required> 
+                <br>
+                <label for="username">Nombre de Usuario:</label><br>
+                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required> 
+                <br>
+                <label for="quantity">Cantidad:</label><br>
+                <input type="number" v-model="item.quantity" min="1" id="1" placeholder="" required> 
+                <br>
+                <label for="type">Tipo o Categoría:</label><br>
+                <input type="text" v-model="item.type" placeholder="Tipo" required>
+                <br>
+                <label for="description">Descripción:</label><br>
+                <input type="text" v-model="item.description" placeholder="Descripcion" required>
+                <br>
+                <label for="brand">Marca:</label><br>
+                <input type="text" v-model="item.brand" placeholder="Marca" required> 
+                <br>
+                <label for="price">Precio:</label><br>
+                <input type="number" step="any" v-model="item.price" placeholder="" required> 
+                <br>
+
+                <button type="submit">Agregar</button><button type="reset">Cancelar</button>
+
+            </form> 
+        </div>
+    </div> 
 </template>
 
 <script>
-import gql from "graphql-tag";
-
+import jwt_decode from "jwt-decode";
+ 
 export default {
-    name: "Stock",
-
-    data: function(){
+    
+    name: "NewProduct",
+ 
+    data: function(){ 
         return {
-            username: localStorage.getItem("username") || "none",
-            stockByUsername: []
+            item: {
+                name: "",
+                username: "",
+                quantity: 0,
+                type: "",
+                description: "",
+                brand: "",
+                price: 0
+            }
         }
     },
-
-    apollo: {
-        stockByUsername: {
-        query: gql`
-            query ($username: String!) {
-            stockByUsername(username: $username) {
-                id
-                name
-                username
-                quantity
-                type
-                description
-                brand
-                price
-            }
-            }
-        `,
-        variables() {
-            return {
-                username: this.username,
-            };
-            },
-    },
-  },
-  created: function () {
-    this.$apollo.queries.stockByUsername.refetch();
-  }
-};
+} 
 </script>
 
 <style>
-    #Stock {
+    .newProduct_user{
+        margin: 0;
+        padding: 0%;
+        height: 100%;
         width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-    }
-    #Stock .container-table{
-        width:75%;
     
-        max-height: 250px;
-        overflow-y: scroll;
-        overflow-x: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    #Stock table {
+    .container_newProduct_user {
+        border: 3px solid  #ff9233;
+        border-radius: 10px;
+        width: 30%;
+        height: 70%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .newProduct_user h2{
+        color: #ff9233;
+    }
+    .newProduct_user form{
+        width: 70%;
+        
+    }
+    .newProduct_user input[type=text]{
+        box-sizing: border-box;
         width: 100%;
-        border-collapse: collapse;
-        border: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid  #ff9233;
     }
-    #Stock table td,
-    #Stock table th {
-        border: 1px solid #ddd;
-        padding: 8px;
+    .newProduct_user input[type=number]{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid  #ff9233;
     }
-    #Stock table tr:nth-child(even) {
-        background-color: #f2f2f2;
+    .newProduct_user button{
+        width: 50%;
+        height: 40px;
+        color: #E5E7E9;
+        background: #ff9233;
+        border: 2px solid #E5E7E9;
+        border-radius: 5px;
+        padding: 10px 25px;
+        margin: 5px 0 25px 0;
+        cursor: pointer;
     }
-    #Stock table tr:hover {
-        background-color: #ddd;
-    }
-    #Stock table th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: crimson;
-        color: white;
-    }
-    #Stock > h2 {
-        color: #283747;
-        font-size: 25px;
-    }
-    #Stock .container {
-        padding: 30px;
-        border: 3px solid rgba(0, 0, 0, 0.3);
-        border-radius: 20px;
-        margin: 5% 0 1% 0;
-    }
-    #Stock  .container h2 {
-        font-size: 25px;
-        color: #283747;
-    }
-    #Stock .container span {
-        color: crimson;
-        font-weight: bold;
+    .newProduct_user button:hover{
+        color: #E5E7E9;
+        background: crimson;
+        border: 1px solid #283747;
+        cursor: pointer;
     }
 </style>

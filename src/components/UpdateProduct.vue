@@ -1,59 +1,62 @@
-<template>
-
+<template> 
+ 
     <div class="updateProduct_user">
         <div class="container_updateProduct_user">
             <h2>Modificar la Mercancía</h2>
-
+ 
             <form v-on:submit.prevent="processUpdateProduct" >
-             
-                <label for="name">Nombre del Producto: </label><br>
-                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required><br>
-
-                <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model="item.quantity" min="1" id="1" required><br>
-
-                <label for="type">Tipo o Categoría: </label><br>
-                <input type="text" v-model="item.type" placeholder="Tipo"><br>
-
-                <label for="description">Descripción: </label><br>
-                <input type="text" v-model="item.description" placeholder="Descripcion"><br>
-
-                <label for="brand">Marca: </label><br>
-                <input type="text" v-model="item.brand" placeholder="Marca" required><br>
                 
+                <label for="name">Nombre del Producto:</label><br>
+                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required> 
+                <br>
+                <label for="username">Nombre de Usuario:</label><br>
+                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required> 
+                <br>
+                <label for="quantity">Cantidad:</label><br>
+                <input type="number" v-model="item.quantity" min="1" id="1" placeholder="" required> 
+                <br>
+                <label for="type">Tipo o Categoría:</label><br>
+                <input type="text" v-model="item.type" placeholder="Tipo" required>
+                <br>
+                <label for="description">Descripción:</label><br>
+                <input type="text" v-model="item.description" placeholder="Descripcion" required>
+                <br>
+                <label for="brand">Marca:</label><br>
+                <input type="text" v-model="item.brand" placeholder="Marca" required> 
+                <br>
                 <label for="price">Precio:</label><br>
-                <input type="number" step="any" v-model="item.price" required><br>
+                <input type="number" step="any" v-model="item.price" placeholder="" required> 
+                <br>
 
-                <button type="submit">Actualizar</button>
-                <button type="reset">Cancelar</button>
+                <button type="submit">Actualizar</button><button type="reset">Cancelar</button>
 
-            </form>
+            </form> 
         </div>
-
-    </div>
-
+    </div> 
 </template>
 
-
 <script>
-import gql from "graphql-tag";
-
+import jwt_decode from "jwt-decode";
+ 
 export default {
+    
     name: "UpdateProduct",
-
-    data: function(){
+ 
+    data: function(){ 
         return {
-            username: localStorage.getItem("username") || "none",
-            stockByUsername: []
+            item: {
+                name: "",
+                username: "",
+                quantity: 0,
+                type: "",
+                description: "",
+                brand: "",
+                price: 0
+            }
         }
     },
-
-  created: function () {
-    this.$apollo.queries.stockByUsername.refetch();
-  }
-};
+} 
 </script>
-
 
 <style>
     .updateProduct_user{
@@ -67,7 +70,7 @@ export default {
         align-items: center;
     }
     .container_updateProduct_user {
-        border: 3px solid  #283747;
+        border: 3px solid  #ff9233;
         border-radius: 10px;
         width: 30%;
         height: 70%;
@@ -78,7 +81,7 @@ export default {
         align-items: center;
     }
     .updateProduct_user h2{
-        color: #283747;
+        color: #ff9233;
     }
     .updateProduct_user form{
         width: 70%;
@@ -89,20 +92,20 @@ export default {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid #283747;
+        border: 1px solid  #ff9233;
     }
     .updateProduct_user input[type=number]{
         box-sizing: border-box;
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid #283747;
+        border: 1px solid  #ff9233;
     }
     .updateProduct_user button{
         width: 50%;
         height: 40px;
         color: #E5E7E9;
-        background: #283747;
+        background: #ff9233;
         border: 2px solid #E5E7E9;
         border-radius: 5px;
         padding: 10px 25px;

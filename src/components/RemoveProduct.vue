@@ -1,53 +1,50 @@
-<template>
-
-    <div class="removeProduct_user">
+<template> 
+ 
+     <div class="removeProduct_user">
         <div class="container_removeProduct_user">
-            <h2>Modificar la Mercancía</h2>
-
+            <h2>Borrar Mercancía</h2>
+ 
             <form v-on:submit.prevent="processRemoveProduct" >
                 
-                <label for="username">Nombre de Usuario: </label><br>
-                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required><br>
-
-                <label for="name">Nombre del Producto: </label><br>
-                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required><br>
-
-                <label for="brand">Marca: </label><br>
-                <input type="text" v-model="item.brand" placeholder="Marca" required><br>
-                
+                <label for="name">Nombre del Producto:</label><br>
+                <input type="text" v-model="item.name" placeholder="Nombre del Producto" required> 
+                <br>
+                <label for="username">Nombre de Usuario:</label><br>
+                <input type="text" v-model="item.username" placeholder="Nombre de Usuario" required> 
+                <br>
                 <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model="item.quantity" min="1" id="1" required><br>
+                <input type="number" v-model="item.quantity" min="1" id="1" placeholder="" required> 
+                <br>
+                <label for="brand">Marca:</label><br>
+                <input type="text" v-model="item.brand" placeholder="Marca" required> 
+                <br>
 
-                <button type="submit">Eliminar</button>
-                <button type="reset">Cancelar</button>
+                <button type="submit">Borrar</button><button type="reset">Cancelar</button>
 
-            </form>
+            </form> 
         </div>
-
-    </div>
-
+    </div> 
 </template>
 
-
 <script>
-import gql from "graphql-tag";
-
+import jwt_decode from "jwt-decode";
+ 
 export default {
+    
     name: "RemoveProduct",
-
-    data: function(){
+ 
+    data: function(){ 
         return {
-            username: localStorage.getItem("username") || "none",
-            stockByUsername: []
+            item: {
+                name: "",
+                username: "",
+                quantity: 0,
+                brand: ""
+            }
         }
     },
-
-  created: function () {
-    this.$apollo.queries.stockByUsername.refetch();
-  }
-};
+} 
 </script>
-
 
 <style>
     .removeProduct_user{
@@ -61,7 +58,7 @@ export default {
         align-items: center;
     }
     .container_removeProduct_user {
-        border: 3px solid  #283747;
+        border: 3px solid  #ff9233;
         border-radius: 10px;
         width: 30%;
         height: 70%;
@@ -72,7 +69,7 @@ export default {
         align-items: center;
     }
     .removeProduct_user h2{
-        color: #283747;
+        color: #ff9233;
     }
     .removeProduct_user form{
         width: 70%;
@@ -83,20 +80,20 @@ export default {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid #283747;
+        border: 1px solid  #ff9233;
     }
     .removeProduct_user input[type=number]{
         box-sizing: border-box;
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        border: 1px solid #283747;
+        border: 1px solid  #ff9233;
     }
     .removeProduct_user button{
         width: 50%;
         height: 40px;
         color: #E5E7E9;
-        background: #283747;
+        background: #ff9233;
         border: 2px solid #E5E7E9;
         border-radius: 5px;
         padding: 10px 25px;

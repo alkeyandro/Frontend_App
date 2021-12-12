@@ -5,7 +5,7 @@
         Hola <span>{{ username }}</span>!
       </h2>
     </div>
-    <h2>Productos disponibles en esta tienda:</h2>    
+    <h2>Productos disponibles en esta tienda </h2><button v-on:click="loadNewProduct"> Nuevo Producto </button>  
     <div class="container-table">
         <table>
             <thead>
@@ -32,8 +32,8 @@
                     <td>{{ item.description }}</td>
                     <td>{{ item.brand }}</td>
                     <td>$ {{ item.price }}</td>
-                    <td><button v-on:click="deleteItem(item)">Eliminar</button></td>
-                    <td><button v-on:click="updateItem(item)">Editar</button></td>
+                    <td><button v-on:click="loadRemoveProduct">Eliminar</button></td>
+                    <td><button v-on:click="loadUpdateProduct">Editar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -51,6 +51,18 @@ export default {
         return {
             username: localStorage.getItem("username") || "none",
             stockByUsername: []
+        }
+    },
+
+    methods:{
+        loadNewProduct: function() {
+            this.$router.push({ name: "newProduct" });
+        },
+        loadRemoveProduct: function() {
+            this.$router.push({ name: "removeProduct" });
+        },
+        loadUpdateProduct: function() {
+            this.$router.push({ name: "updateProduct" });
         }
     },
 
@@ -122,7 +134,7 @@ export default {
         color: white;
     }
     #Stock > h2 {
-        color: #283747;
+        color: #555555;
         font-size: 25px;
     }
     #Stock .container {
@@ -138,5 +150,24 @@ export default {
     #Stock .container span {
         color: crimson;
         font-weight: bold;
+    }
+
+    button{
+        width: 100%;
+        height: 40px;
+
+        color: #fffbce;
+        background: #ff9233;
+        border: 1px solid #fffbce;
+
+        border-radius: 5px;
+        padding: 10px 25px;
+        margin: 5px 0;
+    }
+
+    button:hover{
+        color: #fffbce;
+        background: crimson;
+        border: 1px solid #ff9233;
     }
 </style>
