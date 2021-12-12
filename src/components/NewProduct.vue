@@ -56,8 +56,15 @@ export default {
             }
         }
     },
+<<<<<<< HEAD
     methods: {
         processNewProduct: async function() {
+=======
+
+    methods: {
+        processNewProduct: async function() {
+
+>>>>>>> 3cce2398346105916cc49c9cccd2e61b22c7efd0
             await this.$apollo
             .mutate({
                 mutation: gql`
