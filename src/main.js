@@ -6,7 +6,7 @@ import { createApolloProvider } from '@vue/apollo-option'
 import { setContext } from 'apollo-link-context'
 
 const httpLink = createHttpLink({
-    uri: 'https://mintic-c4g2-api-gateway.herokuapp.com/',
+    uri: 'https://mintic-c4g2-api.herokuapp.com/',
 })
 
 const authLink = setContext((_, { headers }) => {

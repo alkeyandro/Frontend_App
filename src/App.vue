@@ -4,9 +4,13 @@
 
     <div class="header">
 
-      <h1> Inventario </h1>
+      <h1> STOCKMASTER </h1>
       <nav>
         <button v-if="is_auth" v-on:click="loadHome"> Inicio </button>
+        <button v-if="is_auth" v-on:click="loadStock" > Inventario </button>
+        <button v-if="is_auth" v-on:click="loadNewProduct"> Nuevo Producto </button>
+        <button v-if="is_auth" v-on:click="loadUpdateProduct"> Actualizar Producto </button>
+        <button v-if="is_auth" v-on:click="loadRemoveProduct"> Eliminar Producto </button>
         <button v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
         <button v-if="!is_auth" v-on:click="loadLogIn" > Iniciar Sesión </button>
         <button v-if="!is_auth" v-on:click="loadSignUp" > Registrarse </button>
@@ -76,6 +80,22 @@ export default {
       this.$router.push({ name: "home" });
     },
 
+    loadStock: function() {
+      this.$router.push({ name: "stock" });
+    },
+
+    loadNewProduct: function() {
+      this.$router.push({ name: "NewProduct" });
+    },
+
+    loadUpdateProduct: function() {
+      this.$router.push({ name: "UpdateProduct" });
+    },
+
+    loadRemoveProduct: function() {
+      this.$router.push({ name: "RemoveProduct" });
+    },
+
     logOut: function () {
 			localStorage.clear();
 			alert("Sesión Cerrada");
@@ -108,7 +128,9 @@ export default {
   }
 
   .header h1{
-    width: 20%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 260%;
+    width: 25%;
     text-align: center;
   }
 

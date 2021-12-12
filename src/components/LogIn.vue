@@ -59,6 +59,7 @@ export default {
           this.$emit("completedLogIn", dataLogIn);
         })
         .catch((error) => {
+          // if (error.response.status == "401")
           alert("ERROR 401: Credenciales Incorrectas.");
         });
     },
@@ -67,17 +68,19 @@ export default {
 </script>
 
 
-<style>
+<style>  
 
     .logIn_user{
         margin: 0;
         padding: 0%;
         height: 100%;
         width: 100%;
-    
+
         display: flex;
         justify-content: center;
         align-items: center;
+
+
     }
 
     .container_logIn_user {
