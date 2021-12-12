@@ -6,6 +6,9 @@ import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import Home from './components/Home.vue'
 import Stock from './components/Stock.vue'
+import NewProduct from './components/NewProduct.vue'
+import UpdateProduct from './components/UpdateProduct.vue'
+import RemoveProduct from './components/RemoveProduct.vue'
 
 const routes = [{
         path: '/user/logIn',
@@ -29,6 +32,24 @@ const routes = [{
         path: '/user/stock',
         name: "stock",
         component: Stock,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/newProduct',
+        name: "newProduct",
+        component: NewProduct,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/updateProduct',
+        name: "updateProduct",
+        component: UpdateProduct,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user/removeProduct',
+        name: "removeProduct",
+        component: RemoveProduct,
         meta: { requiresAuth: true }
     }
 ];

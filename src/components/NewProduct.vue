@@ -1,5 +1,5 @@
 <template>
-  <div id="Stock">
+  <div id="NewProduct">
     <div class="container">
       <h2>
         Hola <span>{{ username }}</span>!

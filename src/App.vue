@@ -4,10 +4,13 @@
 
     <div class="header">
 
-      <h1> Inventario </h1>
+      <h1> STOCKMASTER </h1>
       <nav>
         <button v-if="is_auth" v-on:click="loadHome"> Inicio </button>
         <button v-if="is_auth" v-on:click="loadStock" > Inventario </button>
+        <button v-if="is_auth" v-on:click="loadNewProduct"> Nuevo Producto </button>
+        <button v-if="is_auth" v-on:click="loadUpdateProduct"> Actualizar Producto </button>
+        <button v-if="is_auth" v-on:click="loadRemoveProduct"> Eliminar Producto </button>
         <button v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
         <button v-if="!is_auth" v-on:click="loadLogIn" > Iniciar Sesión </button>
         <button v-if="!is_auth" v-on:click="loadSignUp" > Registrarse </button>
@@ -71,6 +74,15 @@ export default {
     },
     loadStock: function() {
       this.$router.push({ name: "stock" });
+    },
+    loadNewProduct: function() {
+      this.$router.push({ name: "newProduct" });
+    },
+    loadUpdateProduct: function() {
+      this.$router.push({ name: "updateProduct" });
+    },
+    loadRemoveProduct: function() {
+      this.$router.push({ name: "removeProduct" });
     },
     logOut: function () {
 			localStorage.clear();
