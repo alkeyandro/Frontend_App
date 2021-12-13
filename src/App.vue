@@ -19,6 +19,8 @@
       <router-view  
         v-on:completedLogIn="completedLogIn"
         v-on:completedSignUp="completedSignUp"
+        v-on:loadUpdateProduct="loadUpdateProduct"
+        v-on:loadRemoveProduct="loadRemoveProduct"
         v-on:logOut="logOut"
       >
       </router-view>
@@ -72,6 +74,30 @@ export default {
     loadStock: function() {
       this.$router.push({ name: "stock" });
     },
+
+    loadUpdateProduct: function(item, product, amount, detail, clasif, prov, cost) {
+      localStorage.setItem("id", item);
+      localStorage.setItem("name", product);
+      localStorage.setItem("quantity", amount);
+      localStorage.setItem("description", detail);
+      localStorage.setItem("type", clasif);
+      localStorage.setItem("brand", prov);
+      localStorage.setItem("price", cost);
+      alert("Seleccionó "+product+" con id: "+item);
+      this.$router.push({ name: "updateProduct" });
+    },
+    loadRemoveProduct: function(item) {
+      localStorage.setItem("id", item);
+      alert("Loading...");
+      this.$router.push({ name: "removeProduct" });
+    },
+
+    loadProduct: function(item) {
+      alert("Loading...");
+			this.loadUpdateProduct(item);
+    },
+
+
     logOut: function () {
 			localStorage.clear();
 			alert("Sesión Cerrada");

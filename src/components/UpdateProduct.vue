@@ -2,27 +2,27 @@
  
     <div class="updateProduct_user">
         <div class="container_updateProduct_user">
-            <h2>Modificar la Mercancía</h2>
+            <h2>Modificar la Mercancía | {{ id }}</h2>
  
             <form v-on:submit.prevent="processUpdateProduct" >
                 
                 <label for="name">Nombre del Producto:</label><br>
-                <input type="text" v-model="updateProduct.name" placeholder="Nombre del Producto" required> 
+                <input type="text" v-model="createProduct.name" placeholder="Nombre del Producto" required> 
                 <br>
                 <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model="updateProduct.quantity" min="1" id="1" placeholder="" required> 
+                <input type="number" v-model.number="createProduct.quantity" min="1" id="1" placeholder="" required> 
                 <br>
                 <label for="type">Tipo o Categoría:</label><br>
-                <input type="text" v-model="updateProduct.type" placeholder="Tipo" required>
+                <input type="text" v-model="createProduct.type" placeholder="Tipo" required>
                 <br>
                 <label for="description">Descripción:</label><br>
-                <input type="text" v-model="updateProduct.description" placeholder="Descripcion" required>
+                <input type="text" v-model="createProduct.description" placeholder="Descripcion" required>
                 <br>
                 <label for="brand">Marca:</label><br>
-                <input type="text" v-model="updateProduct.brand" placeholder="Marca" required> 
+                <input type="text" v-model="createProduct.brand" placeholder="Marca" required> 
                 <br>
                 <label for="price">Precio:</label><br>
-                <input type="number" step="any" v-model="updateProduct.price" placeholder="" required> 
+                <input type="number" step="any" v-model.number="createProduct.price" placeholder="" required> 
                 <br>
 
                 <button type="submit">Actualizar</button><button type="reset">Cancelar</button>
@@ -43,39 +43,74 @@ export default {
  
     data: function(){ 
         return {
-            username: localStorage.getItem("username"),
-            updateProduct: {
-                brand: "",
-                description: "",
-                name: "",
-                price: 0,
+            id: localStorage.getItem("id"),
+            createProduct: {
+                brand: localStorage.getItem("brand"),
+                description: localStorage.getItem("description"),
+                name: localStorage.getItem("name"),
+                price: parseInt(localStorage.getItem("price")),
                 quantity: 0,
-                type: ""
-            },
+                type: localStorage.getItem("type"),
+                username: localStorage.getItem("username"),
+            }
         }
     },
 
     methods: {
         processUpdateProduct: async function() {
 
+            if (localStorage.getItem("token_access")  === null ||
+                localStorage.getItem("token_refresh") === null ) {
+                this.$emit("logOut");
+                return;
+            }
+            localStorage.setItem("token_access", "");
+            await this.$apollo
+                .mutate({
+                mutation: gql`
+                    mutation ($refresh: String!) {
+                    refreshToken(refresh: $refresh) {
+                        access
+                    }
+                    }
+                `,
+                variables: {
+                    refresh: localStorage.getItem("token_refresh"),
+                },
+                })
+                .then((result) => {
+                localStorage.setItem("token_access", result.data.refreshToken.access);
+                })
+                .catch((error) => {
+                this.$emit("logOut");
+                return;
+                });
+            
             await this.$apollo
             .mutate({
                 mutation: gql`
-                    mutation($item: ItemUpdate!, $username: String!) {
-                        updateProduct(item: $item, username: $username) {
+                    mutation($stock: StockInput!) {
+                        createProduct(stock: $stock) {
+                            id
+                            brand
+                            description
+                            name
+                            price
+                            quantity
+                            type
+                            username
                         }
                     }
                 `,
                 variables: {
-                    item: this.updateProduct,
-                    username: this.username,
+                    stock: this.createProduct,
                 },
             })
             .then((result) => {
-                alert("Ok!");
+                alert("Nuevas unidades fueron agregadas!");
             })
             .catch((error) => {
-                alert("Error! Intenta nuevamente.");
+                alert("Error, intenta nuevamente!");
             });
         },
     },

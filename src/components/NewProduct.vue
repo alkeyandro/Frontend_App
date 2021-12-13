@@ -60,6 +60,33 @@ export default {
     methods: {
         processNewProduct: async function() {
 
+            if (localStorage.getItem("token_access")  === null ||
+                localStorage.getItem("token_refresh") === null ) {
+                this.$emit("logOut");
+                return;
+            }
+            localStorage.setItem("token_access", "");
+            await this.$apollo
+                .mutate({
+                mutation: gql`
+                    mutation ($refresh: String!) {
+                    refreshToken(refresh: $refresh) {
+                        access
+                    }
+                    }
+                `,
+                variables: {
+                    refresh: localStorage.getItem("token_refresh"),
+                },
+                })
+                .then((result) => {
+                localStorage.setItem("token_access", result.data.refreshToken.access);
+                })
+                .catch((error) => {
+                this.$emit("logOut");
+                return;
+                });
+
             await this.$apollo
             .mutate({
                 mutation: gql`
@@ -81,7 +108,7 @@ export default {
                 },
             })
             .then((result) => {
-                alert("Ok!");
+                alert("Nuevo producto ha sido creado!");
             })
             .catch((error) => {
                 alert("Este producto no pudo ser agregado, intenta nuevamente!");

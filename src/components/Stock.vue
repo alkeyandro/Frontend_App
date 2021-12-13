@@ -34,8 +34,8 @@
                     <td>{{ item.description }}</td>
                     <td>{{ item.brand }}</td>
                     <td>$ {{ item.price }}</td>
-                    <td><button v-on:click="loadRemoveProduct">Eliminar</button></td>
-                    <td><button v-on:click="loadUpdateProduct">Editar</button></td>
+                    <td><button v-on:click="loadRemoveProduct(item.id)">Eliminar</button></td>
+                    <td><button v-on:click="loadUpdateProduct(item)">Editar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -60,12 +60,21 @@ export default {
         loadNewProduct: function() {
             this.$router.push({ name: "newProduct" });
         },
+
+        loadUpdateProduct: function(item) {
+            let ref = item.id;
+            let product = item.name;
+            let amount = item.quantity;
+            let detail = item.description;
+            let clasif = item.type;
+            let prov = item.brand;
+            let cost = item.price;
+            this.$emit("loadUpdateProduct", ref, product, amount, detail, clasif, prov, cost);
+        },
+
         loadRemoveProduct: function() {
             this.$router.push({ name: "removeProduct" });
         },
-        loadUpdateProduct: function() {
-            this.$router.push({ name: "updateProduct" });
-        }
     },
 
     apollo: {
