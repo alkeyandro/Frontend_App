@@ -74,7 +74,6 @@ export default {
     loadStock: function() {
       this.$router.push({ name: "stock" });
     },
-
     loadUpdateProduct: function(item, product, amount, detail, clasif, prov, cost) {
       localStorage.setItem("id", item);
       localStorage.setItem("name", product);

@@ -10,7 +10,7 @@
                 <input type="text" v-model="createProduct.name" placeholder="Nombre del Producto" required> 
                 <br>
                 <label for="quantity">Cantidad:</label><br>
-                <input type="number" v-model.number="createProduct.quantity" min="1" id="1" placeholder="" required> 
+                <input type="number" v-model.number="createProduct.quantity" id="1" placeholder="" required> 
                 <br>
                 <label for="type">Tipo o Categoría:</label><br>
                 <input type="text" v-model="createProduct.type" placeholder="Tipo" required>
